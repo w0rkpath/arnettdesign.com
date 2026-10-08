@@ -8,6 +8,9 @@ Convention: when `css/site.css` or `js/site.js` changes, bump the `?v=YYYY-MM-DD
 
 ## 2026-10-08
 
+**Copy (round 4)**
+- Instacart outcome is now "Safe food in seconds, not minutes; vision approved by the CEO." The $5B figure was internal and has been removed. `index.html` only.
+
 **Fixes (round 3)**
 - Mobile menu (<720px): numbers now sit in column 1 and links span columns 2–6. Link size is capped at 11.5vw so "Working together" and "Selected work" fit on small Android screens instead of clipping.
 - Masthead scrim: a `.masthead::before` layer blurs the content behind the logo and menu button (12px backdrop blur plus a page-colour tint) and fades to transparent through an alpha mask. There is no divider line. It hides on the Blade contact section.
