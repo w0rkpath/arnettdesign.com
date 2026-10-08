@@ -92,10 +92,12 @@
   const splitHeadings = () => q('main h2.ad-heading:not([data-weight]), main h3.ad-heading, #contact h2').forEach((el) => {
     const key = el.clientWidth + '|' + getComputedStyle(el).fontSize;
     if (el._key === key) return; el._key = key;
-    if (el._t == null) el._t = el.textContent.trim().replace(/\s+/g, ' ');
-    el.innerHTML = el._t.split(' ').map((w) => '<span data-w style="display:inline-block">' + escH(w) + '</span>').join(' ');
+    if (el._t == null) { const g = ['']; el.childNodes.forEach((c) => { if (c.nodeName === 'BR') g.push(''); else g[g.length - 1] += ' ' + c.textContent; }); el._g = g.map((s) => s.trim().replace(/\s+/g, ' ')).filter(Boolean); el._t = el._g.join(' '); }
+    el.style.textWrap = 'wrap';
+    el.innerHTML = el._g.map((g) => '<span style="display:block">' + g.split(' ').map((w) => '<span data-w style="display:inline-block">' + escH(w) + '</span>').join(' ') + '</span>').join('');
     const lines = []; let top = null;
     q('[data-w]', el).forEach((w) => { const t = w.offsetTop; if (top === null || Math.abs(t - top) > 4) { lines.push([]); top = t; } lines[lines.length - 1].push(w.textContent); });
+    el.style.textWrap = '';
     el.innerHTML = lines.map((l) => '<span style="display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em"><span data-ln style="display:block;white-space:nowrap">' + escH(l.join(' ')) + '</span></span>').join('');
     el.setAttribute('data-scrub', '');
     el.setAttribute('aria-label', el._t);
