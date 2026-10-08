@@ -204,6 +204,8 @@ main { transition: opacity 360ms var(--ease-out); }
 .menu-nav > a { grid-column: 4 / -1; }
 
 /* hero */
+/* flex children with auto margins don't stretch: force the grids to full width */
+.hero > .ad-grid, .hero > div, .contact > .ad-grid { width: 100%; }
 .hero { min-height: 100svh; display: flex; flex-direction: column; padding-top: calc(var(--space-4) + 48px + var(--space-16)); padding-bottom: var(--space-6); }
 .hero h1 { max-width: 15em; text-wrap: balance; }
 .blade { color: var(--blade-500); }
