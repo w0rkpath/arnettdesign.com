@@ -172,7 +172,7 @@
     });
     const y = Math.max(0, scrollY);
     out.style.transform = m ? 'translateY(' + (-y * 0.22).toFixed(1) + 'px)' : '';
-    meta.style.opacity = m ? clamp(1 - y / (vh * 0.4)).toFixed(3) : '';
+    meta.style.opacity = m ? clamp((meta.getBoundingClientRect().bottom - 120) / (vh * 0.35)).toFixed(3) : '';
     q('[data-scrub]').forEach((el) => {
       const p = m ? clamp((vh * 0.95 - el.getBoundingClientRect().top) / (vh * 0.4)) : 1;
       const ls = q('[data-ln]', el);
@@ -181,6 +181,7 @@
     q('[data-rule]').forEach((el) => { const p = m ? clamp((vh * 0.92 - el.getBoundingClientRect().top) / (vh * 0.35) - (+el.dataset.i || 0) * 0.18) : 1; el.style.transform = p >= 1 ? '' : 'scaleX(' + ease(p).toFixed(4) + ')'; });
     q('[data-fade]').forEach((el) => { const p = m ? clamp((vh * 0.9 - el.getBoundingClientRect().top) / (vh * 0.3)) : 1; el.style.opacity = p >= 1 ? '' : ease(p).toFixed(3); el.style.transform = p >= 1 ? '' : 'translateY(' + ((1 - ease(p)) * 16).toFixed(1) + 'px)'; });
     q('[data-weight]').forEach((el) => { const p = m ? ease(clamp((vh * 0.95 - el.getBoundingClientRect().top) / (vh * 0.55))) : 1; el.style.fontWeight = p >= 1 ? '' : String(Math.round(100 + 300 * p)); el.style.letterSpacing = p >= 1 ? '' : (-0.015 - 0.015 * p).toFixed(4) + 'em'; });
+    root.classList.toggle('ad-at-top', y < 8);
     root.classList.toggle('ad-on-signal', contact.getBoundingClientRect().top <= 96);
     if (moving) kick();
   };

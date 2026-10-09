@@ -6,6 +6,21 @@ Convention: when `css/site.css` or `js/site.js` changes, bump the `?v=YYYY-MM-DD
 
 ---
 
+## 2026-10-09
+
+**Files changed**
+- `index.html` (cache query only, now `?v=2026-10-09`)
+- `css/site.css`
+- `js/site.js`
+- `CHANGES.md`
+
+**Mobile fixes (<720px; tested at phone size, about 412×915 CSS px)**
+- Hero top padding is reduced on mobile (space-16 → space-6 below the masthead), so more of the headline shows on load. Headline size is unchanged.
+- Masthead blur and fade are now hidden at the top of the page (`.ad-at-top`, scrollY < 8) and fade in once scrolling starts, so they no longer dim the "Digital product design" label on load. Cache query is now `?v=2026-10-09b`.
+- Hero meta (Method / Focus / Clients / Contact) used to fade by `scrollY`, so on tall mobile heroes it was invisible by the time it scrolled into view, leaving a blank screen. It now fades by its own position, only as its bottom edge nears the masthead. Desktop behaviour is effectively the same.
+
+---
+
 ## 2026-10-08
 
 **Copy (round 4)**
